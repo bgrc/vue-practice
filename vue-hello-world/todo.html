@@ -4,28 +4,29 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Hello World</title>
+        <title>ToDoList</title>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     </head>
     <body>
         <div id="app">
-            <input type="text" v-model="inputValue" />
+            <input v-model="inputValue" type="text" />
             <button v-on:click="handleBtnClick">提交</button>
             <ul>
-                <todo-item v-on:delete="handleDeleteItem"
-                    v-bind:content="item"
-                    v-bind:index="index"
+                <todo-item
+                    v-bind:items="item"
                     v-for="(item, index) in list"
-                    :key="index"></todo-item>
+                    v-bind:key="index"
+                    v-on:delete="handleDeleteTodo">
+                </todo-item>
             </ul>
         </div>
         <script>
             var TodoItem = {
-                props: ['content','index'],
-                template: "<li @click='handleItemClick'>{{this.content}}</li>",
+                props: ['items','index'],
+                template: "<li v-on:click='handleDeleteItem'>{{items}}</li>",
                 methods: {
-                    handleItemClick: function(){
-                        this.$emit("delete",this.index)
+                    handleDeleteItem: function(){
+                        this.$emit('delete',this.index)
                     }
                 }
             }
@@ -36,15 +37,14 @@
                     TodoItem
                 },
                 data: {
-                    list:['item1','item2'],
-                    inputValue: ""
+                    list: ['item1','item2','item3'],
+                    inputValue: ''
                 },
                 methods: {
                     handleBtnClick: function(){
                         this.list.push(this.inputValue)
-                        this.inputValue = ""
                     },
-                    handleDeleteItem: function(index){
+                    handleDeleteTodo: function(index){
                         this.list.splice(index,1)
                     }
                 }
