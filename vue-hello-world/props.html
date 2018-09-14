@@ -9,8 +9,8 @@
     </head>
     <body>
         <div id="app">
-            <Counter></Counter>
-            <Counter></Counter>
+            <Counter ref="one" @change="handleChange"></Counter>
+            <Counter ref="two" @change="handleChange"></Counter>
             <div>{{total}}</div>
         </div>
         <script>

@@ -4,41 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ref 引用</title>
+        <title>change props</title>
         <script src="https://vuejs.org/js/vue.min.js"></script>
     </head>
     <body>
         <div id="app">
-            <Counter></Counter>
-            <Counter></Counter>
-            <div>{{total}}</div>
+            <Counter :count="0"></Counter>
+            <Counter :count="1"></Counter>
         </div>
         <script>
             Vue.component("Counter", {
+                props: ["count"],
                 template: "<div @click='handleClick'>{{number}}</div>",
                 data: function(){
                     return {
-                        number: 0
+                        number: this.count
                     }
                 },
                 methods: {
                     handleClick: function(){
-                        this.number ++
-                        this.$emit('change')
+                        this.number++
                     }
                 }
             })
             
             var vm = new Vue({
-                el: "#app",
-                data: {
-                    total: 0
-                },
-                methods: {
-                    handleChange: function(){
-                        this.total = this.$refs.one.number + this.$refs.two.number
-                    }
-                }
+                el: "#app"
             })
         </script>
     </body>
