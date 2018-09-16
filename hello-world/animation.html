@@ -6,19 +6,33 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>css animation</title>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <style>
+            .v-enter {
+                opacity: 0;
+            }
+            .v-enter-active {
+                transition: opacity 3s;
+            }
+            .v-leave-to {
+                opacity:0;
+            }
+            .v-leave-active {
+                transition: opacity 3s;
+            }
+        </style>
     </head>
     <body>
         <div id="app">
-            <transition name="fade">
+            <transition>
                 <div v-if="show">Hello World</div>
             </transition>
-            <button @click="handleClick">切换</button>
+            <button @click="handleClick">change</button>
         </div>
         <script>
             var vm = new Vue({
                 el: "#app",
                 data: {
-                    show: true
+                    show: false
                 },
                 methods: {
                     handleClick: function(){
