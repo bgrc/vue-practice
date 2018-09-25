@@ -23,30 +23,30 @@ export default {
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl'
 .header
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  height: 0.86rem
-  align-items: center
-  background: $bgcolor
-  color: #fff
+  display flex
+  flex-direction row
+  justify-content space-between
+  height 0.86rem
+  align-items center
+  background $bgcolor
+  color #fff
   .header-left
-    width: 0.77rem
+    width 0.77rem
     .back-icon
-      text-align: center
-      font-size: 0.36rem
+      text-align center
+      font-size 0.36rem
   .header-input
-    flex: 1
-    color: #ccc
-    border-radius: 0.1rem
-    background: #fff
-    line-height: 0.6rem
-    padding-left: 0.2rem
+    flex 1
+    color #ccc
+    border-radius 0.1rem
+    background #fff
+    line-height 0.6rem
+    padding-left 0.2rem
   .header-right
-    text-align: center
-    width: 1.24rem
-    margin-right: 0.1rem
+    text-align center
+    width 1.24rem
+    margin-right 0.1rem
     .arrow-icon
-      font-size: 0.18rem
-      margin-left: -0.04rem
+      font-size 0.18rem
+      margin-left -0.04rem
 </style>
