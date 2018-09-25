@@ -1,16 +1,8 @@
 <template>
   <div class="icons">
     <swiper :options="swiperOption">
-      <swiper-slide>
-        <div v-for="(item, index) in iconList1" :key="index">
-          <div class="icon-item">
-            <img :src='item.imgUrl' />
-            <p class="keywords">{{item.keywords}}</p>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div v-for="(item, index) in iconList2" :key="index">
+      <swiper-slide v-for="(items, index) in pages" :key="index">
+        <div v-for="(item, index) in items" :key="index">
           <div class="icon-item">
             <img :src='item.imgUrl' />
             <p class="keywords">{{item.keywords}}</p>
@@ -32,7 +24,7 @@ export default {
           el: '.swiper-pagination'
         }
       },
-      iconList1: [
+      iconList: [
         {
           id: '001',
           imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
@@ -72,9 +64,7 @@ export default {
           id: '008',
           imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/fa/2548667cb6e902.png',
           keywords: '逛博物馆'
-        }
-      ],
-      iconList2: [
+        },
         {
           id: '009',
           imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/50/26ffa31b56646402.png',
@@ -86,6 +76,19 @@ export default {
           keywords: '全部玩乐'
         }
       ]
+    }
+  },
+  computed: {
+    pages () {
+      const pages = []
+      this.iconList.forEach((item, index) => {
+        const page = Math.floor(index / 8)
+        if (!pages[page]) {
+          pages[page] = []
+        }
+        pages[page].push(item)
+      })
+      return pages
     }
   }
 }
